@@ -14,10 +14,6 @@ login_manager.login_message_category = 'info'
 
 mail = Mail()
 
-from flasite.users.routes import users
-from flasite.posts.routes import posts
-from flasite.main.routes import main
-
 
 def create_app():
     app = Flask(__name__)
@@ -35,8 +31,14 @@ def create_app():
     login_manager.init_app(app)
     mail.init_app(app)
 
+    from flasite.users.routes import users
+    from flasite.posts.routes import posts
+    from flasite.main.routes import main
+    from flasite.errors.handler import errors
+
     app.register_blueprint(users)
     app.register_blueprint(posts)
     app.register_blueprint(main)
+    app.register_blueprint(errors)
 
     return app
