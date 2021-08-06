@@ -3,9 +3,9 @@ from flask import Flask
 from flask_sqlalchemy import SQLAlchemy
 from flask_bcrypt import Bcrypt
 from flask_mail import Mail
-from extensions import db,login_manager
-from commands import create_tables
+from flask_login import LoginManager
 
+db = SQLAlchemy()
 bcrypt = Bcrypt()
 login_manager = LoginManager()
 login_manager.login_view = 'login'
@@ -17,13 +17,13 @@ mail = Mail()
 def create_app():
     app = Flask(__name__)
 
-    app.config['SECRET_KEY'] = os.getenv('SECRET_KEY')
-    app.config['SQLALCHEMY_DATABASE_URI'] = os.getenv('DATABASE_URL')
+    app.config['SECRET_KEY'] = '5791628bb0b13ce0c676dfde280ba245'
+    app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///site.db'
     app.config['MAIL_SERVER'] = 'smtp.gmail.com'
     app.config['MAIL_PORT'] = 465
     app.config['MAIL_USE_SSL'] = True
-    app.config['MAIL_USERNAME'] = os.getenv('EMAIL_USER')
-    app.config['MAIL_PASSWORD'] = os.getenv('EMAIL_PASS')
+    app.config['MAIL_USERNAME'] = os.getenv('manas.satpute99@gmail.com')
+    app.config['MAIL_PASSWORD'] = os.getenv('Manas@14september')
 
     db.init_app(app)
     bcrypt.init_app(app)
@@ -39,7 +39,5 @@ def create_app():
     app.register_blueprint(posts)
     app.register_blueprint(main)
     app.register_blueprint(errors)
-
-    app.cli.add_command(create_tables)
 
     return app

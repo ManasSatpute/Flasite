@@ -3,7 +3,6 @@ from flasite import db, bcrypt, mail
 from flasite.users.forms import (RegistrationForm, LoginForm, UpdateAccountForm, RequestResetForm, ResetPasswordForm)
 from flasite.models import User, Post
 from flask_login import login_user, current_user, logout_user, login_required
-from flask_mail import Message
 from flasite.users.utils import save_picture, send_reset_email
 
 users = Blueprint('users', __name__)
