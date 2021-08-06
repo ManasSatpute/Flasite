@@ -13,3 +13,5 @@ SQLAlchemy == 1.4.21
 WTForms == 2.3.3
 psycopg2
 gunicorn
+click
+flask.cli

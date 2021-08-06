@@ -2,11 +2,10 @@ import os
 from flask import Flask
 from flask_sqlalchemy import SQLAlchemy
 from flask_bcrypt import Bcrypt
-from flask_login import LoginManager
 from flask_mail import Mail
+from extensions import db,login_manager
+from commands import create_tables
 
-
-db = SQLAlchemy()
 bcrypt = Bcrypt()
 login_manager = LoginManager()
 login_manager.login_view = 'login'
@@ -40,5 +39,7 @@ def create_app():
     app.register_blueprint(posts)
     app.register_blueprint(main)
     app.register_blueprint(errors)
+
+    app.cli.add_command(create_tables)
 
     return app
