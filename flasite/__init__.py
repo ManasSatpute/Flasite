@@ -42,7 +42,3 @@ def create_app():
     app.register_blueprint(errors)
 
     return app
-
-
-def create_table():
-    db.create_all()
