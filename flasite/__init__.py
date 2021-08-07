@@ -1,15 +1,14 @@
 import os
-from dotenv import load_dotenv
+
 from flask import Flask
 from flask_sqlalchemy import SQLAlchemy
 from flask_bcrypt import Bcrypt
 from flask_mail import Mail
 from flask_login import LoginManager
 
-from os.path import join, dirname
+from dotenv import load_dotenv, find_dotenv
 
-dotenv_path = join(dirname(__file__), '.env')
-load_dotenv(dotenv_path)
+load_dotenv(find_dotenv())
 
 db = SQLAlchemy()
 bcrypt = Bcrypt()
@@ -26,7 +25,8 @@ def create_app():
     app.config['SECRET_KEY'] = os.environ.get('SECRET_KEY')
     app.config['MAIL_USERNAME'] = os.environ.get('EMAIL_USER')
     app.config['MAIL_PASSWORD'] = os.environ.get('EMAIL_PASS')
-    app.config['SQLALCHEMY_DATABASE_URI'] = os.environ.get('DATABASE_URL')
+    app.config['SQLALCHEMY_DATABASE_URI'] = {True:os.environ.get('DATABASE_URL'),False:os.environ.get('DATABASE_URL_LOCAL')}[os.environ.get('FLASK_ENV')=='production']
+    print({True:os.environ.get('DATABASE_URL'),False:os.environ.get('DATABASE_URL_LOCAL')}[os.environ.get('FLASK_ENV')=='production'])
     app.config['MAIL_SERVER'] = 'smtp.gmail.com'
     app.config['MAIL_PORT'] = 465
     app.config['MAIL_USE_SSL'] = True
