@@ -1,9 +1,16 @@
 import os
+from dotenv import load_dotenv
 from flask import Flask
 from flask_sqlalchemy import SQLAlchemy
 from flask_bcrypt import Bcrypt
 from flask_mail import Mail
 from flask_login import LoginManager
+
+from os.path import join, dirname
+from dotenv import load_dotenv
+
+dotenv_path = join(dirname(__file__), '.env')
+load_dotenv(dotenv_path)
 
 db = SQLAlchemy()
 bcrypt = Bcrypt()
@@ -17,7 +24,10 @@ mail = Mail()
 def create_app():
     app = Flask(__name__)
 
-    app.config['SQLALCHEMY_DATABASE_URI'] = os.environ.get('postgres://bekttykzfmadzf:1c448c728cd8fd296ef5241ac92785e81e2890c81671665243237f67b7d09d75@ec2-3-226-59-11.compute-1.amazonaws.com:5432/d4l812t330k3bp')
+    app.config['SECRET_KEY'] = os.environ.get('SECRET_KEY')
+    app.config['MAIL_USERNAME'] = os.environ.get('EMAIL_USER')
+    app.config['MAIL_PASSWORD'] = os.environ.get('EMAIL_PASS')
+    app.config['SQLALCHEMY_DATABASE_URI'] = os.environ.get('DATABASE_URL')
     app.config['MAIL_SERVER'] = 'smtp.gmail.com'
     app.config['MAIL_PORT'] = 465
     app.config['MAIL_USE_SSL'] = True
