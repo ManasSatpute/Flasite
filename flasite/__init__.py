@@ -25,8 +25,11 @@ def create_app():
     app.config['SECRET_KEY'] = os.environ.get('SECRET_KEY')
     app.config['MAIL_USERNAME'] = os.environ.get('EMAIL_USER')
     app.config['MAIL_PASSWORD'] = os.environ.get('EMAIL_PASS')
-    app.config['SQLALCHEMY_DATABASE_URI'] = {True:os.environ.get('DATABASE_URL'),False:os.environ.get('DATABASE_URL_LOCAL')}[os.environ.get('FLASK_ENV')=='production']
-    print({True:os.environ.get('DATABASE_URL'),False:os.environ.get('DATABASE_URL_LOCAL')}[os.environ.get('FLASK_ENV')=='production'])
+
+    app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://bekttykzfmadzf:1c448c728cd8fd296ef5241ac92785e81e2890c81671665243237f67b7d09d75@ec2-3-226-59-11.compute-1.amazonaws.com:5432/d4l812t330k3bp'
+    # app.config['SQLALCHEMY_DATABASE_URI'] = {True:os.environ.get('DATABASE_URL'),False:os.environ.get('DATABASE_URL_LOCAL')}[os.environ.get('FLASK_ENV')=='production']
+
+    print({True:os.environ.get('SQLALCHEMY_DATABASE_URL'),False:os.environ.get('DATABASE_URL_LOCAL')}[os.environ.get('FLASK_ENV')=='production'])
     app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
     app.config['MAIL_SERVER'] = 'smtp.gmail.com'
     app.config['MAIL_PORT'] = 465
