@@ -29,7 +29,7 @@ def create_app():
     #app.config['SQLALCHEMY_DATABASE_URI'] = os.getenv('DATABASE_URL')
     app.config['SQLALCHEMY_DATABASE_URI'] = {True:os.environ.get('SQLALCHEMY_DATABASE_URI'),False:os.environ.get('DATABASE_URL_LOCAL')}[os.environ.get('FLASK_ENV')=='production']
 
-    print({True:os.environ.get('SQLALCHEMY_DATABASE_URI'),False:os.environ.get('DATABASE_URL_LOCAL')}[os.environ.get('FLASK_ENV')=='production'])
+    print(os.environ.get('EMAIL_USER'))
     #print(os.getenv('SQLALCHEMY_DATABASE_URI'))
     app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
     app.config['MAIL_SERVER'] = 'smtp.gmail.com'
