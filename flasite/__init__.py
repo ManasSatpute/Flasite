@@ -17,13 +17,9 @@ mail = Mail()
 def create_app():
     app = Flask(__name__)
 
-    app.config['SECRET_KEY'] = os.getenv('5791628bb0b13ce0c676dfde280ba245')
-    app.config['SQLALCHEMY_DATABASE_URI'] = os.environ.get('postgres://bekttykzfmadzf:1c448c728cd8fd296ef5241ac92785e81e2890c81671665243237f67b7d09d75@ec2-3-226-59-11.compute-1.amazonaws.com:5432/d4l812t330k3bp')
     app.config['MAIL_SERVER'] = 'smtp.gmail.com'
     app.config['MAIL_PORT'] = 465
     app.config['MAIL_USE_SSL'] = True
-    app.config['MAIL_USERNAME'] = os.getenv('manas.satpute99@gmail.com')
-    app.config['MAIL_PASSWORD'] = os.getenv('Manas@14september')
 
     db.init_app(app)
     bcrypt.init_app(app)
