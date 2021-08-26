@@ -1,0 +1,4 @@
+Flasite is a Blogging Application which allows users to interact with each other by creating posts which other users can view. 
+So Flasite is a webapp made using Flask micro framework written in python. So the Front end was made using HTML and CSS,
+whereas the  backend was done using Python Flask. The Database used for the project was initially SQLite3 which was later
+updated to be a postgress Database. I have also deployed the final app on Heroku.
